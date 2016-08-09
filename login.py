@@ -1,4 +1,6 @@
 import unittest
+import HTMLTestRunner
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -57,15 +59,17 @@ class TestLogin(unittest.TestCase):
 
     def setUp(self):
 
-        self.driver = webdriver.Firefox()
+        #self.driver = webdriver.Firefox()
+        self.driver = webdriver.Chrome(executable_path="/opt/chromedriver")
         self.driver.get('http://test.azure.welltweit.com/')
+        self.driver.maximize_window()
         self.driver.implicitly_wait(4)
 
     def tearDown(self):
         #print ("END OF THE TEST")
         self.driver.close()
 
-    @unittest.skip('skips test of test_valid_login')
+    #@unittest.skip('skips test of test_valid_login')
     def test_valid_login(self):
         '''User tries login using valid name and password'''             
         home_page = HomePage(self.driver)
@@ -82,4 +86,4 @@ class TestLogin(unittest.TestCase):
         print (user_home_page.get_error_message())
 
 if __name__ == '__main__':
-    unittest.main()
+    HTMLTestRunner.main()

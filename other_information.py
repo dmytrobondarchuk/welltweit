@@ -1,2 +1,2 @@
 end_of_user_url = 'UserCards'
-error_message = 'Неправильный E-mail или пароль'
+error_message = 'Login or password is invalid'
